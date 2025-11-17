@@ -61,23 +61,23 @@ Before you begin, ensure you have:
 
 ### 1. Clone the Repository
 
-\`\`\`bash
+```bash
 git clone https://github.com/yourusername/whatsapp-campaign-sender.git
 cd whatsapp-campaign-sender
-\`\`\`
+```
 
 ### 2. Configure Environment Variables
 
-\`\`\`bash
+```bash
 # Copy the example environment file
 cp .env.example .env
 
 # Edit .env and add your WhatsApp credentials
-\`\`\`
+```
 
 **Required Environment Variables:**
 
-\`\`\`env
+```env
 # Get these from https://developers.facebook.com/apps
 WHATSAPP_TOKEN=your_whatsapp_business_api_token
 PHONE_NUMBER_ID=your_phone_number_id
@@ -89,17 +89,17 @@ BUSINESS_ACCOUNT_ID=your_business_account_id
 # Database (can use defaults for development)
 POSTGRES_PASSWORD=postgres
 DATABASE_URL=postgresql://postgres:postgres@postgres:5432/whatsapp_sender
-\`\`\`
+```
 
 ### 3. Start the Application
 
-\`\`\`bash
+```bash
 # Build and start all services
 docker-compose up --build
 
 # Or run in detached mode
 docker-compose up -d
-\`\`\`
+```
 
 This will start:
 - **PostgreSQL** on port 5432
@@ -114,7 +114,7 @@ Open your browser and navigate to:
 
 ## 📁 Application Structure
 
-\`\`\`
+```
 WhatsAppTool/
 ├── src/                          # Backend source code
 │   ├── db/                       # Database layer
@@ -158,34 +158,34 @@ WhatsAppTool/
 ├── docker-compose.yml            # Production Docker Compose
 ├── docker-compose.dev.yml        # Development Docker Compose
 └── README.md                     # This file
-\`\`\`
+```
 
 ## 🔌 API Endpoints
 
 ### Campaigns
-- \`POST /send\` - Send campaign messages
-- \`POST /webhook\` - WhatsApp webhook endpoint
+- `POST /send` - Send campaign messages
+- `POST /webhook` - WhatsApp webhook endpoint
 
 ### Templates
-- \`GET /api/templates\` - List all templates
-- \`GET /api/templates/sync/whatsapp\` - Sync from WhatsApp
+- `GET /api/templates` - List all templates
+- `GET /api/templates/sync/whatsapp` - Sync from WhatsApp
 
 ### Contacts
-- \`GET /api/contacts\` - List contacts (with pagination)
-- \`POST /api/contacts\` - Create contact
-- \`POST /api/contacts/upload\` - Upload CSV
-- \`GET /api/contacts/export\` - Export to CSV
+- `GET /api/contacts` - List contacts (with pagination)
+- `POST /api/contacts` - Create contact
+- `POST /api/contacts/upload` - Upload CSV
+- `GET /api/contacts/export` - Export to CSV
 
 ### Country Limits
-- \`GET /api/country-limits\` - List all limits
-- \`PUT /api/country-limits/:code\` - Update limit
+- `GET /api/country-limits` - List all limits
+- `PUT /api/country-limits/:code` - Update limit
 
 ### Analytics
-- \`GET /api/analytics/overview\` - Dashboard statistics
-- \`GET /api/analytics/campaigns\` - Campaign history
-- \`GET /api/analytics/delivery-rates\` - Delivery breakdown
-- \`GET /api/analytics/country-stats\` - Per-country stats
-- \`GET /api/analytics/timeline\` - Message delivery timeline
+- `GET /api/analytics/overview` - Dashboard statistics
+- `GET /api/analytics/campaigns` - Campaign history
+- `GET /api/analytics/delivery-rates` - Delivery breakdown
+- `GET /api/analytics/country-stats` - Per-country stats
+- `GET /api/analytics/timeline` - Message delivery timeline
 
 ## 📖 Usage Guide
 
@@ -197,11 +197,11 @@ Navigate to the **Contacts** tab and:
 3. Click "Upload Contacts"
 
 **CSV Format:**
-\`\`\`csv
+```csv
 phone,opt_in,tags
 +972501234567,true,vip-customer
 +14155551234,true,premium
-\`\`\`
+```
 
 ### 2. Send a Campaign
 
@@ -252,10 +252,10 @@ View the **Dashboard** for:
 All configuration is done through environment variables. Copy `.env.example` to `.env` and configure:
 
 #### Required Variables
-- \`WHATSAPP_TOKEN\` - Your WhatsApp Business API token
-- \`PHONE_NUMBER_ID\` - Your WhatsApp phone number ID
-- \`WEBHOOK_VERIFY_TOKEN\` - Secure token for webhook verification
-- \`BUSINESS_ACCOUNT_ID\` - Your WhatsApp Business Account ID (optional)
+- `WHATSAPP_TOKEN` - Your WhatsApp Business API token
+- `PHONE_NUMBER_ID` - Your WhatsApp phone number ID
+- `WEBHOOK_VERIFY_TOKEN` - Secure token for webhook verification
+- `BUSINESS_ACCOUNT_ID` - Your WhatsApp Business Account ID (optional)
 
 #### Optional Variables
 - `DATABASE_URL` - PostgreSQL connection string (default: `postgresql://postgres:postgres@localhost:5432/whatsapp_sender`)
@@ -291,7 +291,7 @@ All configuration is done through environment variables. Copy `.env.example` to 
 ### Running Locally (Without Docker)
 
 #### Backend
-\`\`\`bash
+```bash
 # Install dependencies
 npm install
 
@@ -303,12 +303,12 @@ npm run db:push
 
 # Start development server with hot reload
 npm run dev
-\`\`\`
+```
 
 Backend runs on: `http://localhost:3000`
 
 #### Frontend
-\`\`\`bash
+```bash
 # Navigate to frontend directory
 cd frontend
 
@@ -317,28 +317,28 @@ npm install
 
 # Start development server
 npm run dev
-\`\`\`
+```
 
 Frontend runs on: `http://localhost:5173`
 
 ### Building for Production
 
 #### Backend
-\`\`\`bash
+```bash
 npm run build
 npm start
-\`\`\`
+```
 
 #### Frontend
-\`\`\`bash
+```bash
 cd frontend
 npm run build
 npm run preview
-\`\`\`
+```
 
 ### Database Management
 
-\`\`\`bash
+```bash
 # Generate migration files
 npm run db:generate
 
@@ -350,20 +350,20 @@ npm run db:push
 
 # Open Drizzle Studio (database GUI)
 npm run db:studio
-\`\`\`
+```
 
 ## 🐛 Troubleshooting
 
 ### Backend won't start
 - Check PostgreSQL is running
 - Verify `.env` variables
-- Check logs: \`docker-compose logs backend\`
+- Check logs: `docker-compose logs backend`
 
 ### Messages not sending
 - Verify WhatsApp token is valid
 - Check template is approved
 - Ensure phone numbers are E.164 format
-- Check contacts have \`opt_in=true\`
+- Check contacts have `opt_in=true`
 
 ## 🤝 Contributing
 
@@ -411,4 +411,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Ready to send your first campaign?** Add your WhatsApp API credentials to \`.env\` and run \`docker-compose up\`! 🚀
+**Ready to send your first campaign?** Add your WhatsApp API credentials to `.env` and run `docker-compose up`! 🚀
